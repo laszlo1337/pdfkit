@@ -9,7 +9,7 @@
     "document",
     "vector"
   ],
-  "version": "0.14.0",
+  "version": "0.14.1",
   "homepage": "http://pdfkit.org/",
   "author": {
     "name": "Devon Govett",
@@ -19,9 +19,9 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/foliojs/pdfkit.git"
+    "url": "https://github.com/laszlo1337/pdfkit.git"
   },
-  "bugs": "https://github.com/foliojs/pdfkit/issues",
+  "bugs": "https://github.com/laszlo1337/pdfkit/issues",
   "devDependencies": {
     "@babel/core": "^7.11.6",
     "@babel/plugin-external-helpers": "^7.10.4",
