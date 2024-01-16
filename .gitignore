@@ -4,6 +4,7 @@ lib/font/tables/.DS_Store
 node-zlib/
 playground/
 build/
+js/
 .vscode
 coverage
 package-lock.json
