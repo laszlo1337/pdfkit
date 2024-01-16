@@ -2464,8 +2464,25 @@ class PDFFont {
   }
 }
 
+let resolvedPath = null;
+try {
+  // Attempt to resolve PDFKit main file path
+  const pdfKitMainPath = require.resolve('pdfkit.js');
+
+  // Calculate the path to the 'data' directory
+  const dataPath = path.join(pdfKitMainPath, '..', 'data');
+
+  // Check if the 'data' directory exists
+  if (fs.existsSync(dataPath)) {
+    resolvedPath = dataPath;
+  }
+} catch (e) {
+  console.error("Can't find pdfkit.js");
+}
+var dataPath = resolvedPath;
+
 const __filename$1 = url.fileURLToPath((typeof document === 'undefined' ? new (require('u' + 'rl').URL)('file:' + __filename).href : (document.currentScript && document.currentScript.src || new URL('pdfkit.js', document.baseURI).href)));
-const __dirname$1 = path.dirname(__filename$1);
+const __dirname$1 = dataPath !== null && dataPath !== void 0 ? dataPath : path.dirname(__filename$1);
 
 // This insanity is so bundlers can inline the font files
 const STANDARD_FONTS = {
@@ -5242,7 +5259,7 @@ function isEqual(a, b) {
 }
 
 const __filename$2 = url.fileURLToPath((typeof document === 'undefined' ? new (require('u' + 'rl').URL)('file:' + __filename).href : (document.currentScript && document.currentScript.src || new URL('pdfkit.js', document.baseURI).href)));
-const __dirname$2 = path.dirname(__filename$2);
+const __dirname$2 = dataPath !== null && dataPath !== void 0 ? dataPath : path.dirname(__filename$2);
 var PDFA = {
   initPDFA(pSubset) {
     if (pSubset.charAt(pSubset.length - 3) === '-') {

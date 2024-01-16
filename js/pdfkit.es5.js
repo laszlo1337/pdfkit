@@ -2959,8 +2959,25 @@ var PDFFont = /*#__PURE__*/function () {
   return PDFFont;
 }();
 
+var resolvedPath = null;
+try {
+  // Attempt to resolve PDFKit main file path
+  var pdfKitMainPath = require.resolve('pdfkit.js');
+
+  // Calculate the path to the 'data' directory
+  var dataPath = path.join(pdfKitMainPath, '..', 'data');
+
+  // Check if the 'data' directory exists
+  if (fs.existsSync(dataPath)) {
+    resolvedPath = dataPath;
+  }
+} catch (e) {
+  console.error("Can't find pdfkit.js");
+}
+var dataPath$1 = resolvedPath;
+
 var __filename = fileURLToPath(import.meta.url);
-var __dirname = path.dirname(__filename);
+var __dirname = dataPath$1 !== null && dataPath$1 !== void 0 ? dataPath$1 : path.dirname(__filename);
 
 // This insanity is so bundlers can inline the font files
 var STANDARD_FONTS = {
@@ -5933,7 +5950,7 @@ function isEqual(a, b) {
 }
 
 var __filename$1 = fileURLToPath(import.meta.url);
-var __dirname$1 = path.dirname(__filename$1);
+var __dirname$1 = dataPath$1 !== null && dataPath$1 !== void 0 ? dataPath$1 : path.dirname(__filename$1);
 var PDFA = {
   initPDFA: function initPDFA(pSubset) {
     if (pSubset.charAt(pSubset.length - 3) === '-') {
